@@ -9,13 +9,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
 // App Theming 
-      theme: LightTheme.lightTheme,
+      theme: 
+      LightTheme.lightTheme,
       darkTheme: DarkTheme.darkTheme,
       themeMode: ThemeMode.system,
-
-
-      title: 'careNet',
       home: SignInCheck(),
+      title: "CareNet",
+    
     );
   }
 }

@@ -38,6 +38,7 @@ dependencies:
   firebase_auth: any
   google_sign_in: any
   provider: any
+  flutter_launcher_icons: ^0.9.2
 
 dev_dependencies:
   flutter_test:
@@ -100,8 +101,17 @@ flutter:
 
 flutter_native_splash:
   color: '#FFFFFF'
-  image: assets/CareNetLogo-Light.png
+  image: assets/AppIcons/CareNetLogo-Light.png
   color_dark: '#0E1118'
-  image_dark: assets/CareNetLogo-Dark.png
+  image_dark: assets/AppIcons/CareNetLogo-Dark.png
+  android: true
+  ios: true
+  web: false
 
+
+flutter_icons:
+  android: true
+  image_path_android: assets/AppIcons/playstore.png
+  ios: true
+  image_path_ios: assets/AppIcons/appstore.png
 
