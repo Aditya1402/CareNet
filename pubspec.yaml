@@ -99,8 +99,6 @@ flutter:
 flutter_native_splash:
   color: '#FFFFFF'
   image: assets/AppIcons/CareNetLogo-Light.png
-  color_dark: '#0E1118'
-  image_dark: assets/AppIcons/CareNetLogo-Dark.png
   android: true
   ios: true
   web: false
