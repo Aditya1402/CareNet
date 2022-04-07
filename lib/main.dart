@@ -1,3 +1,4 @@
+import 'package:carenet/Firebase/SignInCheck.dart';
 import 'package:flutter/material.dart';
 import '../widgets/themes.dart';
 void main() => runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
 
 
       title: 'careNet',
-      home: Scaffold(),
+      home: SignInCheck(),
     );
   }
 }
