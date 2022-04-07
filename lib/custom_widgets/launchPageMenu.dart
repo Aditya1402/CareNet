@@ -7,13 +7,16 @@ class LaunchPageMenu extends StatelessWidget {
   double icon_spacing = 10.w;
   double line_spacing = 5.h;
   double menu_left_spacing = 85.w;
+  
+
   @override
   Widget build(BuildContext context) {
+    double width = (MediaQuery.of(context).size.width)/4.5;
     return Column(
       children: [
         Row(
           children: [
-            SizedBox(width: menu_left_spacing),
+            SizedBox(width: width),
             SvgPicture.asset(
               "assets/images/download.svg",
               width: icon_width,
@@ -30,7 +33,7 @@ class LaunchPageMenu extends StatelessWidget {
         SizedBox(height: line_spacing),
         Row(
           children: [
-            SizedBox(width: menu_left_spacing),
+            SizedBox(width: width),
             SvgPicture.asset(
               "assets/images/location.svg",
               width: icon_width,
@@ -47,7 +50,7 @@ class LaunchPageMenu extends StatelessWidget {
         SizedBox(height: line_spacing),
         Row(
           children: [
-            SizedBox(width: menu_left_spacing),
+            SizedBox(width: width),
             SvgPicture.asset(
               "assets/images/bills.svg",
               width: icon_width,
@@ -64,7 +67,7 @@ class LaunchPageMenu extends StatelessWidget {
         SizedBox(height: line_spacing),
         Row(
           children: [
-            SizedBox(width: menu_left_spacing),
+            SizedBox(width: width),
             SvgPicture.asset(
               "assets/images/pills.svg",
               width: icon_width,
