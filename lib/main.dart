@@ -6,6 +6,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "CareNet",
+      theme: ThemeData(
+        fontFamily: 'Circular',
+      ),
       home: Scaffold(),
     );
   }
