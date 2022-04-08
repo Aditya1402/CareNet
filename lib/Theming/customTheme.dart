@@ -32,8 +32,8 @@ class CustomTheme {
       textTheme: TextTheme(
         bodyText1: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400, color: CustomColors.grey1),
         bodyText2: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.white),
-        headline1: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w800, color: Colors.black),
-        headline2: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w800, color: CustomColors.grey1),
+        headline1: TextStyle(fontSize: 23.sp, fontWeight: FontWeight.w800, color: Colors.black),
+        headline2: TextStyle(fontSize: 23.sp, fontWeight: FontWeight.w800, color: CustomColors.grey1),
         subtitle1: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500, color: Colors.black),
         subtitle2: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w700, color: Colors.black)),
         
