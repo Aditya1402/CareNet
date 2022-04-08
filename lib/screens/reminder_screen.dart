@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:carenet/Theming/customColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //import 'package:sprout/model_data/colors.dart';
 import '../widgets/reminder/notification_service.dart';
 import '../widgets/reminder/utilities.dart';
-
 
 class Reminder extends StatefulWidget {
   @override
@@ -43,7 +43,7 @@ class _ReminderState extends State<Reminder> {
                   child: const Text(
                     'Allow',
                     style: TextStyle(
-                      color: Color(0xffcae183),
+                      color: CustomColors.bluebell,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -90,75 +90,55 @@ class _ReminderState extends State<Reminder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(),
-
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              
-              Text('What time would you like to take your pills?',
-              style: TextStyle
-              (
-                fontSize: 20.sp,
+      body: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'What time would you like to take your pills?',
+              style: TextStyle(
+                fontSize: 40.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.grey,
-              ),),
+              ),
+            ),
 
-              SizedBox(height: 10.h,),
+            SizedBox(
+              height: 100.h,
+            ),
 
-              Text('You can choose anytime but we recommend early in the morning.',
-              style: TextStyle
-              (
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey
-              ),),
+            //////////////////////////////////////////////////////////////////////
 
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              //////////////////////////////////////////////////////////////////////
-              
-              Container(
-                height: 60,
-                width: 200,
-                child: TextButton(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                    backgroundColor:
-                        MaterialStateProperty.all(const Color(0xffB2B9F7)),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                  ),
-                  onPressed: () async {
-                    NotificationWeekAndTime? pickedSchedule =
-                        await pickSchedule(context);
+            Container(
+              height: 60,
+              width: 200,
+              child: TextButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20))),
+                  backgroundColor:
+                      MaterialStateProperty.all(CustomColors.bluebell),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                ),
+                onPressed: () async {
+                  NotificationWeekAndTime? pickedSchedule =
+                      await pickSchedule(context);
 
-                    if (pickedSchedule != null) {
-                      createWaterReminderNotification(pickedSchedule);
-                    }
-                  },
-                  child: const Text(
-                    'Add a reminder',
-                    style: TextStyle(
-                      fontSize: 22,
-                    ),
+                  if (pickedSchedule != null) {
+                    createWaterReminderNotification(pickedSchedule);
+                  }
+                },
+                child: const Text(
+                  'Add a reminder',
+                  style: TextStyle(
+                    fontSize: 22,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

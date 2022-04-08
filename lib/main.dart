@@ -1,8 +1,10 @@
 import 'package:carenet/Screens/launchPage.dart';
 import 'package:carenet/Theming/customTheme.dart';
+import 'package:carenet/screens/reminder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/themes.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -12,17 +14,14 @@ class MyApp extends StatelessWidget {
         designSize: Size(390, 844),
         splitScreenMode: true,
         minTextAdapt: true,
-        builder: () =>MaterialApp(
+        builder: () => MaterialApp(
+// App Theming
+              theme: LightTheme.lightTheme,
+              darkTheme: DarkTheme.darkTheme,
+              themeMode: ThemeMode.system,
 
-// App Theming 
-      theme: 
-      LightTheme.lightTheme,
-      darkTheme: DarkTheme.darkTheme,
-      themeMode: ThemeMode.system,
-
-
-      title: 'careNet',
-      home: Scaffold(),
-    ));
+              title: 'careNet',
+              home: Reminder(),
+            ));
   }
 }
