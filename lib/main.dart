@@ -3,8 +3,12 @@ import 'package:carenet/Theming/customTheme.dart';
 import 'package:carenet/screens/reminder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+<<<<<<< Updated upstream
 import '../widgets/themes.dart';
 
+=======
+import 'Theming/themes.dart';
+>>>>>>> Stashed changes
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
