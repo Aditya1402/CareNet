@@ -1,16 +1,11 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../LocationTracking/mymap.dart';
 import 'package:location/location.dart' as loc;
 import 'package:permission_handler/permission_handler.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-}
 
 class LocationPage extends StatefulWidget {
   @override
@@ -32,8 +27,13 @@ class _MyAppState extends State<LocationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('live location tracker'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100.h),
+        child: AppBar(
+          elevation: 3,
+          backgroundColor: Colors.white,
+          title: Text('live location tracker'),
+        ),
       ),
       body: Column(
         children: [
@@ -41,17 +41,17 @@ class _MyAppState extends State<LocationPage> {
               onPressed: () {
                 _getLocation();
               },
-              child: Text('add my location')),
+              child: Text('Add Location')),
           TextButton(
               onPressed: () {
                 _listenLocation();
               },
-              child: Text('enable live location')),
+              child: Text('Enable Live Location')),
           TextButton(
               onPressed: () {
                 _stopListening();
               },
-              child: Text('stop live location')),
+              child: Text('Stop Sharing Location')),
           Expanded(
               child: StreamBuilder(
                 stream:
@@ -94,13 +94,16 @@ class _MyAppState extends State<LocationPage> {
     );
   }
 
+  final user = FirebaseAuth.instance.currentUser;
+
   _getLocation() async {
     try {
       final loc.LocationData _locationResult = await location.getLocation();
       await FirebaseFirestore.instance.collection('location').doc('user1').set({
+        
         'latitude': _locationResult.latitude,
         'longitude': _locationResult.longitude,
-        'name': 'john'
+        'name': user!.displayName!,
       }, SetOptions(merge: true));
     } catch (e) {
       print(e);
@@ -118,7 +121,7 @@ class _MyAppState extends State<LocationPage> {
       await FirebaseFirestore.instance.collection('location').doc('user1').set({
         'latitude': currentlocation.latitude,
         'longitude': currentlocation.longitude,
-        'name': 'john'
+        'name': user!.displayName!,
       }, SetOptions(merge: true));
     });
   }

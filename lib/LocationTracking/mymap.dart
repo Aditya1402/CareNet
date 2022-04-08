@@ -1,3 +1,4 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -23,9 +24,10 @@ class _MyMapState extends State<MyMap> {
             if (_added) {
               mymap(snapshot);
             }
-            if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
+            if (snapshot.hasError) {
+              return const Center(child: CircularProgressIndicator());
             }
+            else
             return GoogleMap(
               mapType: MapType.normal,
               markers: {
@@ -34,7 +36,7 @@ class _MyMapState extends State<MyMap> {
                       snapshot.data!.docs.singleWhere((element) => element.id == widget.user_id)['latitude'],
                       snapshot.data!.docs.singleWhere((element) => element.id == widget.user_id)['longitude'],
                     ),
-                    markerId: MarkerId('id'),
+                    markerId: const MarkerId('id'),
                     icon: BitmapDescriptor.defaultMarkerWithHue(
                         BitmapDescriptor.hueMagenta)
                 ),
