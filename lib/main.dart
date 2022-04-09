@@ -1,5 +1,7 @@
 import 'package:carenet/Screens/launchPage.dart';
 import 'package:carenet/Theming/customTheme.dart';
+import 'package:carenet/authentication/email_authentication.dart';
+import 'package:carenet/authentication/email_login_widget.dart';
 import 'package:carenet/authentication/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,6 +15,7 @@ Future main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   @override
@@ -26,9 +29,10 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         builder: () => 
          MaterialApp(
+           navigatorKey: navigatorKey,
             title: "CareNet",
             debugShowCheckedModeBanner: false,
             theme: CustomTheme.lightTheme,
-            home: LaunchPage())));
+            home: SafeArea(child: EmailAuth()))));
   }
 }

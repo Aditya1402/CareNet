@@ -1,6 +1,9 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'package:carenet/Screens/homePage.dart';
 import 'package:carenet/Screens/profile.dart';
 import 'package:carenet/Theming/customColors.dart';
+import 'package:carenet/authentication/email_authentication.dart';
 import 'package:carenet/authentication/google_sign_in.dart';
 import 'package:carenet/custom_widgets/launchPageMenu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -60,11 +63,11 @@ class LaunchPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.fromLTRB(
                                 47.5.w, 12.h, 47.5.w, 12.h)),
-                        onPressed: () {},
+                        onPressed: () => EmailAuth(),
                         child: Builder(builder: (context) {
                           return Text(
                             "Join CareNet",
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style: Theme.of(context).textTheme.button,
                           );
                         }),
                       ),
