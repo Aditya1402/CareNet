@@ -7,8 +7,8 @@ Future<void> createWaterReminderNotification(
     content: NotificationContent(
       id: createUniqueId(),
       channelKey: 'scheduled_channel',
-      title: 'Time to water your plants!',
-      body: 'Don\'t forget to water your plants. Let them thrive!',
+      title: 'Time to take your pills!',
+      body: 'Don\'t forget to take your pills.',
       notificationLayout: NotificationLayout.Default,
     ),
     actionButtons: [

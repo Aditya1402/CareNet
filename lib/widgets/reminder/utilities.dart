@@ -1,3 +1,4 @@
+import 'package:carenet/Theming/customColors.dart';
 import 'package:flutter/material.dart';
 
 int createUniqueId() {
@@ -52,7 +53,7 @@ Future<NotificationWeekAndTime?> pickSchedule(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
                     backgroundColor: MaterialStateProperty.all(
-                      Colors.green.shade400,
+                      CustomColors.bluebell,
                     ),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                   ),
@@ -75,7 +76,7 @@ Future<NotificationWeekAndTime?> pickSchedule(
           return Theme(
             data: ThemeData(
               colorScheme: ColorScheme.light(
-                primary: Color(0xffcae183),
+                primary: CustomColors.bluebell,
               ),
             ),
             child: child!,
