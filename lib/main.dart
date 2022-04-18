@@ -34,6 +34,6 @@ class MyApp extends StatelessWidget {
                 title: "CareNet",
                 debugShowCheckedModeBanner: false,
                 theme: CustomTheme.lightTheme,
-                home: SafeArea(child: CloudStoragePage()))));
+                home: SafeArea(child: LaunchPage()))));
   }
 }

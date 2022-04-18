@@ -6,6 +6,7 @@ import 'package:carenet/Theming/customColors.dart';
 import 'package:carenet/authentication/email_authentication.dart';
 import 'package:carenet/authentication/google_sign_in.dart';
 import 'package:carenet/custom_widgets/launchPageMenu.dart';
+import 'package:carenet/storage/cloudStorageTest.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,7 @@ class LaunchPage extends StatelessWidget {
               child: Text("Something went wrong!"),
             );
           } else if (snapshot.hasData)
-            return ProfilePage();
+            return CloudStoragePage();
           else
             return SafeArea(
               child: Scaffold(
