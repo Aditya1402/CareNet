@@ -54,6 +54,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w400,
+                  color: Colors.black
                   ),
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
@@ -71,7 +72,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
             // PASSWORD
             TextFormField(
-              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400, color: Colors.black),
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.visiblePassword,
               obscureText: !_passwordVisible,
