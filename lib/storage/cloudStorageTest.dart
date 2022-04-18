@@ -1,3 +1,4 @@
+import 'package:carenet/Strings.dart';
 import 'package:carenet/storage/storageService.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,8 @@ class _CloudStoragePageState extends State<CloudStoragePage> {
                             children: [
                               Icon(Icons.error, color: Colors.white, size: 20,),
                               SizedBox(width: 7),
-                              Text('No file has been selected.'),
+                              Text(Strings.uploadFail,
+                              style: TextStyle(fontFamily: 'Circular'),),
                             ],
                           )
                           )
@@ -53,7 +55,8 @@ class _CloudStoragePageState extends State<CloudStoragePage> {
                             children: [
                               Icon(Icons.done, color: Colors.white, size: 20,),
                               SizedBox(width: 7),
-                              Text("File uploaded successfully."),
+                              Text(Strings.uploadSucess,
+                              style: TextStyle(fontFamily: 'Circular'),),
                             ],
                           )));
                   }
@@ -65,7 +68,7 @@ class _CloudStoragePageState extends State<CloudStoragePage> {
                       .uploadFile(path!, fileName)
                       .then((value) => print("DONE"));
                 },
-                child: Text("Upload File"))
+                child: Text("Upload Medical Record"))
           ],
         ),
       ),
