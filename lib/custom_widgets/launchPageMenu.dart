@@ -1,3 +1,4 @@
+import 'package:carenet/Strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,7 +26,7 @@ class LaunchPageMenu extends StatelessWidget {
               width: icon_spacing,
             ),
             Builder(builder: (context) {
-              return Text("Store medical records",
+              return Text(Strings.menu1,
                   style: Theme.of(context).textTheme.bodyText1);
             })
           ],
@@ -42,7 +43,7 @@ class LaunchPageMenu extends StatelessWidget {
               width: icon_spacing,
             ),
             Builder(builder: (context) {
-              return Text("Live Location Tracking & History",
+              return Text(Strings.menu2,
                   style: Theme.of(context).textTheme.bodyText1);
             })
           ],
@@ -59,7 +60,7 @@ class LaunchPageMenu extends StatelessWidget {
               width: icon_spacing,
             ),
             Builder(builder: (context) {
-              return Text("Utility Bill Payments",
+              return Text(Strings.menu3,
                   style: Theme.of(context).textTheme.bodyText1);
             })
           ],
@@ -76,7 +77,7 @@ class LaunchPageMenu extends StatelessWidget {
               width: icon_spacing,
             ),
             Builder(builder: (context) {
-              return Text("Pill Reminders",
+              return Text(Strings.menu4,
                   style: Theme.of(context).textTheme.bodyText1);
             })
           ],

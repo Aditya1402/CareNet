@@ -12,7 +12,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-
 class LaunchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,11 +19,8 @@ class LaunchPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           // Cases for connection states
-          if (snapshot.connectionState == ConnectionState.waiting)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          else if (snapshot.hasError) {
+        
+          if (snapshot.hasError) {
             return Center(
               child: Text("Something went wrong!"),
             );
@@ -64,7 +60,13 @@ class LaunchPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.fromLTRB(
                                 47.5.w, 12.h, 47.5.w, 12.h)),
-                        onPressed: () => EmailAuth(),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EmailAuth()),
+                          );
+                        },
                         child: Builder(builder: (context) {
                           return Text(
                             "Join CareNet",
