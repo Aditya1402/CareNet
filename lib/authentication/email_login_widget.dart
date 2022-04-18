@@ -13,7 +13,6 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  
 
   @override
   void dispose() {
@@ -52,7 +51,10 @@ class _LoginWidgetState extends State<LoginWidget> {
 
             // EMAIL ADDRESS
             TextFormField(
-              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400),
+              style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w400,
+                  ),
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
               controller: emailController,
@@ -111,18 +113,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                     padding: EdgeInsets.zero,
                   ),
                   child: Text("Forgot Password?",
-                  style: Theme.of(context).textTheme.subtitle1)),
+                      style: Theme.of(context).textTheme.subtitle1)),
             ),
 
-            SizedBox(height: 30.h,),
+            SizedBox(
+              height: 30.h,
+            ),
 
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-               
                   onPressed: () => signIn(),
                   child: Padding(
-                    padding:  EdgeInsets.fromLTRB(0, 2.h, 0, 2.h),
+                    padding: EdgeInsets.fromLTRB(0, 2.h, 0, 2.h),
                     child: Text(
                       "Sign In",
                       style: Theme.of(context).textTheme.button,
@@ -142,10 +145,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                     padding: EdgeInsets.zero,
                   ),
                   child: Text("Create Account",
-                  style: Theme.of(context).textTheme.subtitle1)),
+                      style: Theme.of(context).textTheme.subtitle1)),
             ),
-
-
           ],
         ),
       ),
