@@ -3,8 +3,6 @@ import 'package:carenet/storage/storageService.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CloudStoragePage extends StatefulWidget {
   const CloudStoragePage({Key? key}) : super(key: key);
