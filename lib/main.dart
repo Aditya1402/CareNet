@@ -13,6 +13,8 @@ Future main() async {
 
   // Lock in Portrait Mode
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  // Initialize Firebase Class
   await Firebase.initializeApp();
   runApp(MyApp());
 }
