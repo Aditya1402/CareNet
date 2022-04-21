@@ -1,3 +1,4 @@
+import 'package:carenet/Screens/heart_rate_monitor/heartRateMonitor.dart';
 import 'package:carenet/Screens/launchPage.dart';
 import 'package:carenet/Theming/customTheme.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
               title: "CareNet",
               debugShowCheckedModeBanner: false,
               theme: CustomTheme.lightTheme,
-              home: LaunchPage()
+              home: HeartRateMon()
             ));
   }
 }
