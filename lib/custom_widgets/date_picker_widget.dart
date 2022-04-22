@@ -20,11 +20,14 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => ButtonHeaderWidget(
-        title: 'Date',
-        text: getText(),
-        onClicked: () => pickDate(context),
-      );
+  Widget build(BuildContext context) => SizedBox(
+    width: double.infinity,
+    child: ButtonWidget(
+         
+          text: getText(),
+          onClicked: () => pickDate(context),
+        ),
+  );
 
   Future pickDate(BuildContext context) async {
     final initialDate = DateTime.now();
