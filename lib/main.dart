@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+
+// Making sure Firebase services activate before app execution
 Future main() async {
   // Binding Code
   WidgetsFlutterBinding.ensureInitialized();

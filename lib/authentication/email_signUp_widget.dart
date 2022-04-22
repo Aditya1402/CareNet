@@ -1,31 +1,22 @@
-import 'package:carenet/Strings.dart';
-import 'package:carenet/Theming/customColors.dart';
 import 'package:carenet/authentication/validator.dart';
-import 'package:carenet/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-final formGlobalKey = GlobalKey<FormState>();
+import '../Strings.dart';
+import '../Theming/customColors.dart';
+import 'email_login_widget.dart';
 
-class LoginWidget extends StatefulWidget {
-  /////
-  final VoidCallback onClickedSignUp;
+class SignUpWidget extends StatefulWidget {
+  final Function onClickedSignIn;
+  const SignUpWidget({Key? key, required this.onClickedSignIn})
+      : super(key: key);
 
-  const LoginWidget(
-    {
-      Key? key,
-      required this.onClickedSignUp,
-    }
-  ): super(key: key);
-
-  ////
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<SignUpWidget> createState() => _SignUpWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _SignUpWidgetState extends State<SignUpWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -57,7 +48,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 100.h, 0, 0),
                 child: Text(
-                  Strings.signIn,
+                  Strings.signUp,
                   style: Theme.of(context).textTheme.headline2,
                 ),
               ),
@@ -158,7 +149,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                       // conditionals here
                       if (formGlobalKey.currentState!.validate()) {
                         print("Success");
-                        signIn();
                       } else
                         print("Unsucessfull");
                     },
@@ -172,51 +162,10 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
 
               SizedBox(height: 5.h),
-
-              Align(
-                  alignment: Alignment.center,
-                  child: RichText(
-                      text: TextSpan(
-                          style: TextStyle(
-                              color: CustomColors.grey1,
-                              fontFamily: 'Circular',
-                              fontSize: 14.sp),
-                          text: "Don't have an account? ",
-                          children: [
-                        TextSpan(
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = widget.onClickedSignUp,
-                            text: "Create account",
-                            style: TextStyle(
-                                color: CustomColors.bluebell,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w500))
-                      ]))),
             ],
           ),
         ),
       ),
     );
   }
-
-  Future signIn() async {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => Center(
-              child: CircularProgressIndicator(),
-            ));
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim());
-    } on FirebaseAuthException catch (e) {
-      // TODO
-      print(e);
-    }
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
-  }
-  // Navigator.of(context) won't work -> Need to figure out
-
 }

@@ -7,4 +7,5 @@ class Strings {
   static const menu4 = "Pill Reminders";
 
   static const signIn = "Hello.\nWelcome Back!";
+  static const signUp = "Sign In";
 }

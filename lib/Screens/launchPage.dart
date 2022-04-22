@@ -25,7 +25,7 @@ class LaunchPage extends StatelessWidget {
               child: Text("Something went wrong!"),
             );
           } else if (snapshot.hasData)
-            return ProfilePage();
+            return HomePage();
           else
             return SafeArea(
               child: Scaffold(
