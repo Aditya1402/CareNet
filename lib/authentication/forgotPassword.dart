@@ -1,4 +1,6 @@
+import 'package:carenet/authentication/util_showSnackBar.dart';
 import 'package:carenet/authentication/validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../Theming/customColors.dart';
 
 class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({ Key? key }) : super(key: key);
+  const ForgotPassword({Key? key}) : super(key: key);
 
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
@@ -14,33 +16,39 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   final emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Center
-      (
-        child: Align(alignment: Alignment.center,
-        child: Padding(
-          padding:  EdgeInsets.fromLTRB(30.w, 20.h, 30.w, 20.h),
-          child: Column(children: 
-          [
-            SvgPicture.asset("assets/images/forgotPassword.svg"),
-
-            Text("Forgot your password?",
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Circular',
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w700
-            )),
-
-            SizedBox(
-              width: 250.w,
-              child: Text("Enter your email address to retreive your password!", 
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText1,)),
-
-              TextFormField(
+      body: SafeArea(
+          child: SingleChildScrollView(
+            child: Center(
+                  child: Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(30.w, 20.h, 30.w, 20.h),
+              child: Column(children: [
+                SvgPicture.asset("assets/images/forgotPassword.svg"),
+                Text("Forgot your password?",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Circular',
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w700)),
+                SizedBox(
+                    width: 250.w,
+                    child: Text(
+                      "Enter your email address to retreive your password!",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    )),
+                TextFormField(
                   style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w400,
@@ -60,13 +68,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           color: CustomColors.grey2,
                           fontWeight: FontWeight.w500)),
                 ),
-
-
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                      onPressed: () {
-                      },
+                      onPressed: () => resetPassword(),
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(0, 2.h, 0, 2.h),
                         child: Text(
@@ -75,10 +80,31 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         ),
                       )),
                 ),
-            
-          ]),
-        ),),
-      )),
+              ]),
+            ),
+                  ),
+                ),
+          )),
     );
+  }
+
+  Future resetPassword() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: CircularProgressIndicator(),
+            ));
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailController.text.trim());
+
+      Utils.showSnackBar("Password Reset email sent!");
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    } on Exception catch (e) {
+      // TODO
+      print(e);
+      Utils.showSnackBar(e.toString());
+    }
   }
 }
