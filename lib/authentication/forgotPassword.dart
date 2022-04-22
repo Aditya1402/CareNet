@@ -34,13 +34,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             child: Padding(
               padding: EdgeInsets.fromLTRB(30.w, 20.h, 30.w, 20.h),
               child: Column(children: [
+                SizedBox(height: 200.h,),
                 SvgPicture.asset("assets/images/forgotPassword.svg"),
+                SizedBox(height: 20.h,),
                 Text("Forgot your password?",
                     style: TextStyle(
                         color: Colors.black,
                         fontFamily: 'Circular',
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w700)),
+                        SizedBox(height: 15.h,),
                 SizedBox(
                     width: 250.w,
                     child: Text(
@@ -48,6 +51,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyText1,
                     )),
+                    SizedBox(height: 30.h,),
                 TextFormField(
                   style: TextStyle(
                       fontSize: 18.sp,
@@ -61,13 +65,20 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ? null
                       : "Enter a valid email address",
                   decoration: InputDecoration(
-                      labelText: 'EMAIL',
+                    hintText: "Enter your email here",
+                    hintStyle: TextStyle(
+                      color: CustomColors.grey2,
+                      fontSize: 15.sp
+                    ),
+                      // labelText: 'EMAIL',
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,
-                          color: CustomColors.grey2,
-                          fontWeight: FontWeight.w500)),
+                      // labelStyle: TextStyle(
+                      //     fontSize: 18.sp,
+                      //     color: CustomColors.grey2,
+                      //     fontWeight: FontWeight.w500)
+                      ),
                 ),
+                SizedBox(height: 25.h,),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -75,7 +86,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(0, 2.h, 0, 2.h),
                         child: Text(
-                          "RESET PASSWORD",
+                          "Reset Password",
                           style: Theme.of(context).textTheme.button,
                         ),
                       )),
