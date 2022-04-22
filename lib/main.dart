@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import 'authentication/util_showSnackBar.dart';
+
 
 // Making sure Firebase services activate before app execution
 Future main() async {
@@ -26,6 +28,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     return ChangeNotifierProvider(
         create: (context) => GoogleSignInProvider(),
         child: ScreenUtilInit(
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
             splitScreenMode: true,
             minTextAdapt: true,
             builder: () => MaterialApp(
+              scaffoldMessengerKey: Utils.messengerKey,
                 navigatorKey: navigatorKey,
                 title: "CareNet",
                 debugShowCheckedModeBanner: false,

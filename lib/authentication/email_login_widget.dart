@@ -1,5 +1,6 @@
 import 'package:carenet/Strings.dart';
 import 'package:carenet/Theming/customColors.dart';
+import 'package:carenet/authentication/forgotPassword.dart';
 import 'package:carenet/authentication/validator.dart';
 import 'package:carenet/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,18 +8,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'util_showSnackBar.dart';
+
 final formGlobalKey = GlobalKey<FormState>();
 
 class LoginWidget extends StatefulWidget {
   /////
   final VoidCallback onClickedSignUp;
 
-  const LoginWidget(
-    {
-      Key? key,
-      required this.onClickedSignUp,
-    }
-  ): super(key: key);
+  const LoginWidget({
+    Key? key,
+    required this.onClickedSignUp,
+  }) : super(key: key);
 
   ////
   @override
@@ -133,16 +134,18 @@ class _LoginWidgetState extends State<LoginWidget> {
               SizedBox(height: 3.h),
 
               Padding(
-                padding: EdgeInsets.fromLTRB(219.w, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(230.w, 0, 0, 0),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ForgotPassword())),
                     style: TextButton.styleFrom(
                       splashFactory: NoSplash.splashFactory,
                       minimumSize: Size.zero,
                       padding: EdgeInsets.zero,
                     ),
                     child: Text("Forgot Password?",
-                        style: Theme.of(context).textTheme.subtitle1)),
+                        style: TextStyle(
+                          color: CustomColors.grey1,
+                            fontSize: 13.sp, fontWeight: FontWeight.w400))),
               ),
 
               SizedBox(
@@ -165,13 +168,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 2.h, 0, 2.h),
                       child: Text(
-                        "Sign In",
+                        "LOG IN",
                         style: Theme.of(context).textTheme.button,
                       ),
                     )),
               ),
 
-              SizedBox(height: 5.h),
+              SizedBox(height: 20.h),
 
               Align(
                   alignment: Alignment.center,
@@ -191,7 +194,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 color: CustomColors.bluebell,
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w500))
-                      ]))),
+                      ])))
             ],
           ),
         ),
@@ -213,6 +216,8 @@ class _LoginWidgetState extends State<LoginWidget> {
     } on FirebaseAuthException catch (e) {
       // TODO
       print(e);
+
+      Utils.showSnackBar(e.message);
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);

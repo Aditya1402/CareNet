@@ -1,14 +1,17 @@
 import 'package:carenet/authentication/validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../Strings.dart';
 import '../Theming/customColors.dart';
 import 'email_login_widget.dart';
+import 'util_showSnackBar.dart';
 
 class SignUpWidget extends StatefulWidget {
-  final Function onClickedSignIn;
+  final VoidCallback onClickedSignIn;
   const SignUpWidget({Key? key, required this.onClickedSignIn})
       : super(key: key);
 
@@ -19,11 +22,13 @@ class SignUpWidget extends StatefulWidget {
 class _SignUpWidgetState extends State<SignUpWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -121,20 +126,55 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         fontWeight: FontWeight.w500)),
               ),
 
-              SizedBox(height: 3.h),
+              SizedBox(height: 15.h),
 
-              Padding(
-                padding: EdgeInsets.fromLTRB(219.w, 0, 0, 0),
-                child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      splashFactory: NoSplash.splashFactory,
-                      minimumSize: Size.zero,
-                      padding: EdgeInsets.zero,
+              // CONFIRM PASSWORD
+              TextFormField(
+                validator: (text) {
+                  if (text == null || text.isEmpty)
+                    return "Please confirm enter password";
+                  else if (passwordController.text !=
+                      confirmPasswordController.text)
+                    return "Passwords do not match. Please try again :)";
+                  else
+                    return null;
+                },
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black),
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: !_passwordVisible,
+                controller: confirmPasswordController,
+                decoration: InputDecoration(
+                    suffixIcon: InkWell(
+                      splashColor: Colors.transparent,
+                      onTap: () => setState(
+                        () => _passwordVisible = !_passwordVisible,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 15.h, 0, 0),
+                        child: Icon(
+                          _passwordVisible
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: CustomColors.grey2,
+                          size: 18,
+                        ),
+                      ),
                     ),
-                    child: Text("Forgot Password?",
-                        style: Theme.of(context).textTheme.subtitle1)),
+                    labelText: 'CONFIRM PASSWORD',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    labelStyle: TextStyle(
+                        fontSize: 18.sp,
+                        color: CustomColors.grey2,
+                        fontWeight: FontWeight.w500)),
               ),
+
+              SizedBox(height: 25.h),
+
+              
 
               SizedBox(
                 height: 30.h,
@@ -151,21 +191,65 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         print("Success");
                       } else
                         print("Unsucessfull");
+                      signUp();
                     },
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 2.h, 0, 2.h),
                       child: Text(
-                        "Sign In",
+                        "SIGN UP",
                         style: Theme.of(context).textTheme.button,
                       ),
                     )),
               ),
 
-              SizedBox(height: 5.h),
+              SizedBox(height: 20.h),
+
+              Align(
+                  alignment: Alignment.center,
+                  child: RichText(
+                      text: TextSpan(
+                          style: TextStyle(
+                              color: CustomColors.grey1,
+                              fontFamily: 'Circular',
+                              fontSize: 14.sp),
+                          text: "Already have an account? ",
+                          children: [
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = widget.onClickedSignIn,
+                            text: "Log In",
+                            style: TextStyle(
+                                color: CustomColors.bluebell,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w500))
+                      ]))),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future signUp() async {
+    // showDialog(
+    //     context: context,
+    //     barrierDismissible: false,
+    //     builder: (context) => Center(
+    //           child: CircularProgressIndicator(),
+    //         ));
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e.code.toString());
+      switch (e.code) {
+        case "email-already-in-use":
+          // ignore: deprecated_member_use
+          Utils.showSnackBar(e.message);
+          break;
+      }
+    }
   }
 }
