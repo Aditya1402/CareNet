@@ -248,7 +248,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       switch (e.code) {
         case "email-already-in-use":
           // ignore: deprecated_member_use
-          Utils.showSnackBar(e.message);
+          Utils.showSnackBar(e.message, Colors.red);
           break;
       }
     }

@@ -29,6 +29,7 @@ class LaunchPage extends StatelessWidget {
           else
             return SafeArea(
               child: Scaffold(
+                resizeToAvoidBottomInset: false,
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
