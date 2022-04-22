@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
                 title: "CareNet",
                 debugShowCheckedModeBanner: false,
                 theme: CustomTheme.lightTheme,
-                home: SafeArea(child: PromDisclosure()))));
+                home: SafeArea(child: LaunchPage()))));
   }
 }
 
