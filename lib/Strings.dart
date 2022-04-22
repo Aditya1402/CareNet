@@ -8,4 +8,7 @@ class Strings {
 
   static const signIn = "Hello again.\nWelcome Back!";
   static const signUp = "Hello.\nSign Up to \nget started!";
+
+  static const prom_disc =
+      "This app requires permission to help you securely store your medical records and other services. Provision of access needed for the following :";
 }
