@@ -31,11 +31,13 @@ class CustomTheme {
       // Text Theme
       textTheme: TextTheme(
         bodyText1: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400, color: CustomColors.grey1),
-        bodyText2: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.white),
-        headline1: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w800, color: Colors.black),
-        headline2: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w800, color: CustomColors.grey1),
-        subtitle1: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500, color: Colors.black),
+        button: TextStyle(fontSize: 14.sp,fontWeight:FontWeight.w500,color: Colors.white ),
+        bodyText2: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500, color: Colors.white),
+        headline1: TextStyle(fontSize: 23.sp, fontWeight: FontWeight.w800, color: Colors.black),
+        headline2: TextStyle(fontSize: 27.sp, fontWeight: FontWeight.w800,color: Colors.black),
+        subtitle1: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: CustomColors.grey2),
         subtitle2: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w700, color: Colors.black)),
+        
         
       
       // Fonts
