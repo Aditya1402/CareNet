@@ -1,3 +1,4 @@
+import 'package:carenet/Screens/extras.dart';
 import 'package:carenet/Screens/homePage.dart';
 import 'package:carenet/Theming/customColors.dart';
 import 'package:carenet/custom_widgets/prom_disc_tag.dart';
@@ -144,7 +145,7 @@ class _PromDisclosureState extends State<PromDisclosure> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(onPressed: ()=>
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage())), 
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => extras_screen())), 
                 child: Text("Proceed")))
             ],
           ),

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:carenet/Screens/homePage.dart';
+import 'package:carenet/Screens/extras.dart';
+import 'package:carenet/Screens/prom_disc.dart';
 import 'package:carenet/authentication/authPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class EmailAuth extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return HomePage();
+                return PromDisclosure();
               } else if (snapshot.hasError) {
                 return Center(
                   child: SnackBar(

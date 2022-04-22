@@ -2,6 +2,7 @@
 
 import 'package:carenet/Screens/homePage.dart';
 import 'package:carenet/Screens/profile.dart';
+import 'package:carenet/Screens/prom_disc.dart';
 import 'package:carenet/Theming/customColors.dart';
 import 'package:carenet/authentication/email_authentication.dart';
 import 'package:carenet/authentication/google_sign_in.dart';
@@ -25,7 +26,7 @@ class LaunchPage extends StatelessWidget {
               child: Text("Something went wrong!"),
             );
           } else if (snapshot.hasData)
-            return HomePage();
+            return PromDisclosure();
           else
             return SafeArea(
               child: Scaffold(

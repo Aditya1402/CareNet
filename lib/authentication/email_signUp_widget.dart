@@ -231,12 +231,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   }
 
   Future signUp() async {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => Center(
-              child: CircularProgressIndicator(),
-            ));
+    // showDialog(
+    //     context: context,
+    //     barrierDismissible: false,
+    //     builder: (context) => Center(
+    //           child: CircularProgressIndicator(),
+    //         ));
 
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
