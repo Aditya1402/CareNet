@@ -1,4 +1,5 @@
 import 'package:carenet/Screens/launchPage.dart';
+import 'package:carenet/Screens/prom_disc.dart';
 import 'package:carenet/Theming/customTheme.dart';
 import 'package:carenet/authentication/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
                 title: "CareNet",
                 debugShowCheckedModeBanner: false,
                 theme: CustomTheme.lightTheme,
-                home: SafeArea(child: LaunchPage()))));
+                home: SafeArea(child: PromDisclosure()))));
   }
 }
 
