@@ -1,6 +1,7 @@
 import 'package:carenet/Screens/extras.dart';
 import 'package:carenet/Screens/heart_rate_monitor/heartRateMonitor.dart';
 import 'package:carenet/Screens/profile.dart';
+import 'package:carenet/Screens/reminder_screen.dart';
 import 'package:carenet/Theming/customColors.dart';
 import 'package:carenet/authentication/google_sign_in.dart';
 import 'package:carenet/main.dart';
@@ -234,7 +235,7 @@ class HomePage extends StatelessWidget {
                                 height: 10.h,
                               ),
                               ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> Reminder())),
                                   child: Text("Set Reminders"))
                             ],
                           ),
