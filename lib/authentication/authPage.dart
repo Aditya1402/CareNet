@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'email_signUp_widget.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key key}) : super(key: key);
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
   State<AuthPage> createState() => _AuthPageState();

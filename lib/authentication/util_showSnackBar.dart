@@ -15,7 +15,7 @@ class Utils {
       backgroundColor: color,
     );
 
-    messengerKey.currentState
+    messengerKey.currentState!
       ..removeCurrentSnackBar()
       ..showSnackBar(snackBar);
   }

@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../Strings.dart';
 
 class PromDisclosure extends StatefulWidget {
-  const PromDisclosure({Key key}) : super(key: key);
+  const PromDisclosure({Key? key}) : super(key: key);
 
   @override
   State<PromDisclosure> createState() => _PromDisclosureState();

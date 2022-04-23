@@ -13,7 +13,7 @@ class EmailAuth extends StatelessWidget {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
-        child: StreamBuilder<User>(
+        child: StreamBuilder<User?>(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {

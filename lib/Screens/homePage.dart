@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(10.w, 10.h, 20.w, 0),
                   child: CircleAvatar(
                       radius: 18.w,
-                      backgroundImage: user==null?AssetImage("assets/images/profile.png"):NetworkImage(user.photoURL),
+                      backgroundImage: NetworkImage(user!.photoURL!),
                 ),
               )
               )

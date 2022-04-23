@@ -63,7 +63,7 @@ class _extras_screenState extends State<extras_screen> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         autofocus: false,
                         validator: (value) {
-                          if (value.length > 20) {
+                          if (value!.length > 20) {
                             return 'Name should be less than 20 characters';
                           } else if (value.isEmpty || value == null)
                             return "Please enter your name";
@@ -122,9 +122,9 @@ class _extras_screenState extends State<extras_screen> {
                                   ),
                                 );
                               }).toList(),
-                              onChanged: (String newValue) {
+                              onChanged: (String? newValue) {
                                 setState(() {
-                                  genderOption = newValue;
+                                  genderOption = newValue!;
                                 });
                               },
                             ),
@@ -197,9 +197,9 @@ class _extras_screenState extends State<extras_screen> {
                                   ),
                                 );
                               }).toList(),
-                              onChanged: (String newValue) {
+                              onChanged: (String? newValue) {
                                 setState(() {
-                                  BG_val = newValue;
+                                  BG_val = newValue!;
                                 });
                               },
                             ),
@@ -213,9 +213,9 @@ class _extras_screenState extends State<extras_screen> {
                         width: 180.w,
                         child: ElevatedButton(
                             onPressed: () {
-                              if (_formKey.currentState.validate()) {
+                              if (_formKey.currentState!.validate()) {
                                 //form is valid, proceed further
-                                _formKey.currentState.save();
+                                _formKey.currentState!.save();
                                 name = nameController.text;
                                 createUser(name: name);
                                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
@@ -240,7 +240,7 @@ class _extras_screenState extends State<extras_screen> {
   }
 }
 
-Future createUser({ String name}) async {
+Future createUser({ String? name}) async {
   final docUser = FirebaseFirestore.instance.collection('users').doc('my-id');
 
   final json = {

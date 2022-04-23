@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakelock/wakelock.dart';
 
 class HeartRateMon extends StatefulWidget {
-  const HeartRateMon({Key key}) : super(key: key);
+  const HeartRateMon({Key? key}) : super(key: key);
 
   @override
   State<HeartRateMon> createState() => _HeartRateMonState();
@@ -15,7 +15,7 @@ class _HeartRateMonState extends State<HeartRateMon> {
   bool _toggled = false;
   bool _processing = false;
   List<SensorValue> _data = [];
-  CameraController _controller;
+  CameraController? _controller;
   double _alpha = 0.3;
   int _bpm = 0;
 
@@ -62,7 +62,7 @@ class _HeartRateMonState extends State<HeartRateMon> {
                 child: Center(
                   child: _controller == null
                       ? Container()
-                      : CameraPreview(_controller),
+                      : CameraPreview(_controller!),
                 ),
               ),
               Expanded(
@@ -114,11 +114,11 @@ class _HeartRateMonState extends State<HeartRateMon> {
     try {
       List _cameras = await availableCameras();
       _controller = CameraController(_cameras.first, ResolutionPreset.high);
-      await _controller.initialize();
+      await _controller!.initialize();
       Future.delayed(Duration(milliseconds: 500)).then((onValue) {
         _controller?.setFlashMode(FlashMode.torch);
       });
-      _controller.startImageStream((CameraImage image) {
+      _controller!.startImageStream((CameraImage image) {
         if (!_processing) {
           setState(() {
             _processing = true;
@@ -152,7 +152,7 @@ class _HeartRateMonState extends State<HeartRateMon> {
   }
 
   _disposeController() {
-    _controller.dispose();
+    _controller?.dispose();
     _controller = null;
   }
 
