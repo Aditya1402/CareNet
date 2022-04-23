@@ -1,7 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:carenet/Screens/heart_rate_monitor/chart.dart';
+import 'package:carenet/Theming/customColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wakelock/wakelock.dart';
 
 class HeartRateMon extends StatefulWidget {
@@ -52,60 +54,144 @@ class _HeartRateMonState extends State<HeartRateMon> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Column(
+          child: Padding(
+            padding:  EdgeInsets.fromLTRB(25.w, 20.h, 25.w, 20.h),
+            child: Column(
         children: [
-          // Shift - 1
-          Expanded(
+            Align(
+              alignment: Alignment.centerLeft,
               child: Row(
-            children: [
-              Expanded(
-                child: Center(
-                  child: _controller == null
-                      ? Container()
-                      : CameraPreview(_controller!),
-                ),
+                children: [
+                  Text("Heart Rate Monitor",
+                  style: TextStyle(
+                    color: Colors.black
+                  ),),
+
+                  SizedBox(width: 5.w),
+
+                  Container(
+                    padding: EdgeInsets.all(5.w),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: CustomColors.bluebell
+                    ),
+                    child: Text("BETA",
+                    style: TextStyle(fontSize: 12.sp),),
+                  )
+                ],
               ),
-              Expanded(
+            ),
+
+            SizedBox(height: 30.h,),
+
+            Container(
+              padding: EdgeInsets.all(15.w),
+              height: 250.h,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[100],
+                
+              ),
+              child: Row(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
                     child: Center(
-                      child: Text(
-                        
-                        (_bpm > 30 && _bpm < 150 ? _bpm.round().toString() : "--"),
-                        style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
-                      ),
+                      child: _controller == null
+                          ? Container()
+                          : CameraPreview(_controller!),
                     ),
                   ),
-            ],
-          )),
+                ),
 
-          // Icon Toggle Area
-          Center(
-            child: IconButton(
-              icon: Icon(_toggled ? Icons.favorite : Icons.favorite_border),
-              color: Colors.red,
-              iconSize: 20.w,
-              onPressed: () {
-                if (_toggled) {
-                  _untoggle();
-                } else {
-                  _toggle();
-                }
-              },
-            ),
-          ),
+                SizedBox(width: 60.w,),
 
-          // Shift - 2
-          Expanded(
-            child: Container(
-                child: Chart(_data),
-                margin: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(18),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Center(
+                    child: Text(
+                      
+                      (_bpm > 30 && _bpm < 150 ? _bpm.round().toString() : "65 \nBPM"),
+                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
                     ),
-                    color: Colors.black)),
-          )
+                  ),
+                ),
+              ],
+            ),
+            ),
+
+            SizedBox(height: 15.h,),
+
+            Text("Measurement is in progress. Please keep your device steady.",textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black,
+            fontSize: 15.sp,
+            ),
+            ),
+
+            SizedBox(height: 10.h,),
+            
+
+            // Icon Toggle Area
+            Center(
+              child: IconButton(
+                icon: Icon(_toggled ? Icons.favorite : Icons.favorite_border),
+                color: CustomColors.bluebell,
+                iconSize: 20.w,
+                onPressed: () {
+                  if (_toggled) {
+                    _untoggle();
+                  } else {
+                    _toggle();
+                  }
+                },
+              ),
+            ),
+
+            Container(
+              padding: EdgeInsets.all(15.w),
+              child: Row(
+                children: 
+                [
+                  SvgPicture.asset("assets/images/torch.svg",
+                  width: 35.w,),
+
+                  SizedBox(width: 10.w,),
+
+                  SizedBox(
+                    width: 250.w,
+                    child: Text("High intensity of flash in some devices can cause contact area to heat up. Kindly remove your finger if it gets uncomfortable.",
+                    style: TextStyle(color: CustomColors.grey1,fontSize: 12.sp, fontWeight: FontWeight.w400),),
+                  )
+                ],
+              ),
+              width: double.infinity,
+              height: 100.h,
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(10)
+
+              ),
+            ),
+
+            SizedBox(height: 20.h,),
+
+            // Shift - 2
+            Expanded(
+              child: Container(
+                  child: Chart(_data),
+                  // margin: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      color: Colors.grey[300])),
+            )
         ],
-      )),
+      ),
+          )),
     );
   }
 
@@ -152,7 +238,7 @@ class _HeartRateMonState extends State<HeartRateMon> {
   }
 
   _disposeController() {
-    _controller?.dispose();
+    _controller!.dispose();
     _controller = null;
   }
 
