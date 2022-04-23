@@ -12,7 +12,7 @@ import 'util_showSnackBar.dart';
 
 class SignUpWidget extends StatefulWidget {
   final VoidCallback onClickedSignIn;
-  const SignUpWidget({Key? key, required this.onClickedSignIn})
+  const SignUpWidget({Key key,  this.onClickedSignIn})
       : super(key: key);
 
   @override
@@ -72,7 +72,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 keyboardType: TextInputType.emailAddress,
                 controller: emailController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (input) => input!.isValidEmail()
+                validator: (input) => input.isValidEmail()
                     ? null
                     : "Enter a valid email address",
                 decoration: InputDecoration(
@@ -187,7 +187,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       onPressed:
 
                       // conditionals here
-                      if (formGlobalKey.currentState!.validate()) {
+                      if (formGlobalKey.currentState.validate()) {
                         print("Success");
                       } else
                         print("Unsucessfull");

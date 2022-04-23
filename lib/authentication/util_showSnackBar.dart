@@ -5,7 +5,7 @@ import '../Theming/customColors.dart';
 class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
-  static showSnackBar(String? text, Color color) {
+  static showSnackBar(String text, Color color) {
     if (text == null) return;
     final snackBar = SnackBar(
       content: Text(
@@ -15,7 +15,7 @@ class Utils {
       backgroundColor: color,
     );
 
-    messengerKey.currentState!
+    messengerKey.currentState
       ..removeCurrentSnackBar()
       ..showSnackBar(snackBar);
   }

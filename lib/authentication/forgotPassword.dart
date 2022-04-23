@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../Theming/customColors.dart';
 
 class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
+  const ForgotPassword({Key key}) : super(key: key);
 
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
@@ -61,7 +61,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (input) => input!.isValidEmail()
+                  validator: (input) => input.isValidEmail()
                       ? null
                       : "Enter a valid email address",
                   decoration: InputDecoration(

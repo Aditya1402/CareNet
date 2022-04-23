@@ -17,8 +17,8 @@ class LoginWidget extends StatefulWidget {
   final VoidCallback onClickedSignUp;
 
   const LoginWidget({
-    Key? key,
-    required this.onClickedSignUp,
+    Key key,
+     this.onClickedSignUp,
   }) : super(key: key);
 
   ////
@@ -77,7 +77,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 keyboardType: TextInputType.emailAddress,
                 controller: emailController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (input) => input!.isValidEmail()
+                validator: (input) => input.isValidEmail()
                     ? null
                     : "Enter a valid email address",
                 decoration: InputDecoration(
@@ -159,7 +159,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       onPressed:
 
                       // conditionals here
-                      if (formGlobalKey.currentState!.validate()) {
+                      if (formGlobalKey.currentState.validate()) {
                         print("Success");
                         signIn();
                       } else
@@ -220,7 +220,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       Utils.showSnackBar(e.message, Colors.red);
     }
 
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState.popUntil((route) => route.isFirst);
   }
   // Navigator.of(context) won't work -> Need to figure out
 

@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +31,18 @@ class ProfilePage extends StatelessWidget {
       children: [
         SizedBox(height: 30.h,),
         CircleAvatar(
-            radius: 40.w, backgroundImage: NetworkImage(user!.photoURL!)),
+            radius: 40.w, backgroundImage: user==null?AssetImage("assets/images/profile.png"):NetworkImage(user.photoURL)),
             SizedBox(height: 18.h,),
-        Text(
-          user.displayName!,
+        Text(user==null?"Aditya Patil":
+          user.displayName,
           style: TextStyle(
               color: Colors.black,
               fontSize: 18.sp,
               fontWeight: FontWeight.w700),
         ),
          SizedBox(height: 4.h,),
-        Text(
-          user.email!,
+        Text(user==null?"aditya142002@gmail.com":
+          user.email,
           style: TextStyle(
               color: CustomColors.grey2,
               fontSize: 15.sp,
