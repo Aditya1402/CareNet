@@ -3,6 +3,7 @@ import 'package:carenet/Screens/heart_rate_monitor/heartRateMonitor.dart';
 import 'package:carenet/Screens/profile.dart';
 import 'package:carenet/Theming/customColors.dart';
 import 'package:carenet/authentication/google_sign_in.dart';
+import 'package:carenet/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -184,7 +185,7 @@ class HomePage extends StatelessWidget {
                                 height: 15.h,
                               ),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> MyApp())),
                                 child: Text(
                                   "Share Location",
                                   style: TextStyle(color: CustomColors.grey2),
