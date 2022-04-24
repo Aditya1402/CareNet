@@ -90,7 +90,10 @@ class _ReminderState extends State<Reminder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Pill Reminders'),
+        elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
@@ -99,9 +102,9 @@ class _ReminderState extends State<Reminder> {
             Text(
               'What time would you like to take your pills?',
               style: TextStyle(
-                fontSize: 40.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey,
+                color: Colors.black,
               ),
             ),
 

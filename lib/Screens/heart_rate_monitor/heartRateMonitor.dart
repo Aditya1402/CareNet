@@ -39,7 +39,6 @@ class _HeartRateMonState extends State<HeartRateMon> {
       _updateBPM();
     });
   }
-  
 
   _untoggle() {
     _disposeController();
@@ -53,36 +52,36 @@ class _HeartRateMonState extends State<HeartRateMon> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Row(
+          children: [
+            Text(
+              "Heart Rate Monitor",
+              style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(width: 5.w),
+            Container(
+              padding: EdgeInsets.all(5.w),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.grey.shade200),
+              child: Text(
+                "BETA",
+                style: TextStyle(fontSize: 12.sp, color: Colors.grey.shade800),
+              ),
+            )
+          ],
+        ),
+      ),
       body: SafeArea(
           child: Padding(
-            padding:  EdgeInsets.fromLTRB(25.w, 20.h, 25.w, 20.h),
-            child: Column(
-        children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  Text("Heart Rate Monitor",
-                  style: TextStyle(
-                    color: Colors.black
-                  ),),
-
-                  SizedBox(width: 5.w),
-
-                  Container(
-                    padding: EdgeInsets.all(5.w),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: CustomColors.bluebell
-                    ),
-                    child: Text("BETA",
-                    style: TextStyle(fontSize: 12.sp),),
-                  )
-                ],
-              ),
+        padding: EdgeInsets.fromLTRB(25.w, 20.h, 25.w, 20.h),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30.h,
             ),
-
-            SizedBox(height: 30.h,),
 
             Container(
               padding: EdgeInsets.all(15.w),
@@ -91,48 +90,57 @@ class _HeartRateMonState extends State<HeartRateMon> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.grey[100],
-                
               ),
               child: Row(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Center(
+                        child: _controller == null
+                            ? Container()
+                            : CameraPreview(_controller!),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 60.w,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
                     child: Center(
-                      child: _controller == null
-                          ? Container()
-                          : CameraPreview(_controller!),
+                      child: Text(
+                        (_bpm > 30 && _bpm < 150
+                            ? _bpm.round().toString()
+                            : "65 \nBPM"),
+                        style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
                     ),
                   ),
-                ),
-
-                SizedBox(width: 60.w,),
-
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Center(
-                    child: Text(
-                      
-                      (_bpm > 30 && _bpm < 150 ? _bpm.round().toString() : "65 \nBPM"),
-                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+                ],
+              ),
             ),
 
-            SizedBox(height: 15.h,),
-
-            Text("Measurement is in progress. Please keep your device steady.",textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.black,
-            fontSize: 15.sp,
-            ),
+            SizedBox(
+              height: 15.h,
             ),
 
-            SizedBox(height: 10.h,),
-            
+            Text(
+              "Measurement is in progress. Please keep your device steady.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15.sp,
+              ),
+            ),
+
+            SizedBox(
+              height: 10.h,
+            ),
 
             // Icon Toggle Area
             Center(
@@ -153,30 +161,36 @@ class _HeartRateMonState extends State<HeartRateMon> {
             Container(
               padding: EdgeInsets.all(15.w),
               child: Row(
-                children: 
-                [
-                  SvgPicture.asset("assets/images/torch.svg",
-                  width: 35.w,),
-
-                  SizedBox(width: 10.w,),
-
+                children: [
+                  SvgPicture.asset(
+                    "assets/images/torch.svg",
+                    width: 35.w,
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
                   SizedBox(
                     width: 250.w,
-                    child: Text("High intensity of flash in some devices can cause contact area to heat up. Kindly remove your finger if it gets uncomfortable.",
-                    style: TextStyle(color: CustomColors.grey1,fontSize: 12.sp, fontWeight: FontWeight.w400),),
+                    child: Text(
+                      "High intensity of flash in some devices can cause contact area to heat up. Kindly remove your finger if it gets uncomfortable.",
+                      style: TextStyle(
+                          color: CustomColors.grey1,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
                   )
                 ],
               ),
               width: double.infinity,
               height: 100.h,
               decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(10)
-
-              ),
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(10)),
             ),
 
-            SizedBox(height: 20.h,),
+            SizedBox(
+              height: 20.h,
+            ),
 
             // Shift - 2
             Expanded(
@@ -189,9 +203,9 @@ class _HeartRateMonState extends State<HeartRateMon> {
                       ),
                       color: Colors.grey[300])),
             )
-        ],
-      ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 

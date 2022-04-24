@@ -27,13 +27,9 @@ class _MyAppState extends State<LocationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.h),
-        child: AppBar(
-          elevation: 3,
-          backgroundColor: Colors.white,
-          title: Text('live location tracker'),
-        ),
+      appBar: AppBar(
+        title: const Text('Live Location Tracking'),
+        elevation: 0,
       ),
       body: Column(
         children: [
@@ -54,41 +50,41 @@ class _MyAppState extends State<LocationPage> {
               child: Text('Stop Sharing Location')),
           Expanded(
               child: StreamBuilder(
-                stream:
+            stream:
                 FirebaseFirestore.instance.collection('location').snapshots(),
-                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  return ListView.builder(
-                      itemCount: snapshot.data?.docs.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title:
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return ListView.builder(
+                  itemCount: snapshot.data?.docs.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title:
                           Text(snapshot.data!.docs[index]['name'].toString()),
-                          subtitle: Row(
-                            children: [
-                              Text(snapshot.data!.docs[index]['latitude']
-                                  .toString()),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(snapshot.data!.docs[index]['longitude']
-                                  .toString()),
-                            ],
+                      subtitle: Row(
+                        children: [
+                          Text(snapshot.data!.docs[index]['latitude']
+                              .toString()),
+                          SizedBox(
+                            width: 20,
                           ),
-                          trailing: IconButton(
-                            icon: Icon(Icons.directions),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      MyMap(snapshot.data!.docs[index].id)));
-                            },
-                          ),
-                        );
-                      });
-                },
-              )),
+                          Text(snapshot.data!.docs[index]['longitude']
+                              .toString()),
+                        ],
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.directions),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  MyMap(snapshot.data!.docs[index].id)));
+                        },
+                      ),
+                    );
+                  });
+            },
+          )),
         ],
       ),
     );
@@ -100,7 +96,6 @@ class _MyAppState extends State<LocationPage> {
     try {
       final loc.LocationData _locationResult = await location.getLocation();
       await FirebaseFirestore.instance.collection('location').doc('user1').set({
-        
         'latitude': _locationResult.latitude,
         'longitude': _locationResult.longitude,
         'name': user!.displayName!,
@@ -144,4 +139,3 @@ class _MyAppState extends State<LocationPage> {
     }
   }
 }
-
