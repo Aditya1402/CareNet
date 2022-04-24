@@ -21,7 +21,6 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'Theming/themes.dart';
 import 'authentication/util_showSnackBar.dart';
 
-
 // Making sure Firebase services activate before app execution
 Future main() async {
   // Binding Code
@@ -31,7 +30,7 @@ Future main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   AwesomeNotifications().initialize(
-    'resource://drawable-hdpi/branding',
+    'resource://mipmap-hdpi/ic_launcher',
     [
       NotificationChannel(
         channelKey: 'scheduled_channel',
@@ -52,11 +51,9 @@ Future main() async {
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     return ChangeNotifierProvider(
         create: (context) => GoogleSignInProvider(),
         child: ScreenUtilInit(
@@ -64,7 +61,7 @@ class MyApp extends StatelessWidget {
             splitScreenMode: true,
             minTextAdapt: true,
             builder: () => MaterialApp(
-              scaffoldMessengerKey: Utils.messengerKey,
+                scaffoldMessengerKey: Utils.messengerKey,
                 navigatorKey: navigatorKey,
                 title: "CareNet",
                 debugShowCheckedModeBanner: false,
@@ -72,4 +69,3 @@ class MyApp extends StatelessWidget {
                 home: SafeArea(child: LaunchPage()))));
   }
 }
-
