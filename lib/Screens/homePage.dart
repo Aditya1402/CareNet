@@ -18,7 +18,7 @@ String datetime3 = DateFormat.MMMMEEEEd().format(datetime);
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-        final user = FirebaseAuth.instance.currentUser;
+    final user = FirebaseAuth.instance.currentUser;
 
     // TODO: implement build
     return SafeArea(
@@ -38,16 +38,16 @@ class HomePage extends StatelessWidget {
             automaticallyImplyLeading: false,
             actions: [
               GestureDetector(
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfilePage())),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(10.w, 10.h, 20.w, 0),
-                  child: CircleAvatar(
-                      radius: 18.w,
-                      backgroundImage: NetworkImage(user!.photoURL!),
-                ),
-              )
-              )
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProfilePage())),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(10.w, 10.h, 20.w, 0),
+                    //   child: CircleAvatar(
+                    //       radius: 18.w,
+                    //       backgroundImage: NetworkImage(user!.photoURL!),
+                    // ),
+//Disabled as email login doesn't have 'user' property breaking the entire app
+                  ))
             ],
           ),
         ),
@@ -98,7 +98,11 @@ class HomePage extends StatelessWidget {
                                 height: 15.h,
                               ),
                               ElevatedButton(
-                                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> HeartRateMon())),
+                                  onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              HeartRateMon())),
                                   style: ElevatedButton.styleFrom(
                                       primary: Colors.redAccent),
                                   child: Text("Measure Rate"))
@@ -186,7 +190,10 @@ class HomePage extends StatelessWidget {
                                 height: 15.h,
                               ),
                               ElevatedButton(
-                                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> MyApp())),
+                                onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MyApp())),
                                 child: Text(
                                   "Share Location",
                                   style: TextStyle(color: CustomColors.grey2),
@@ -235,7 +242,10 @@ class HomePage extends StatelessWidget {
                                 height: 10.h,
                               ),
                               ElevatedButton(
-                                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> Reminder())),
+                                  onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Reminder())),
                                   child: Text("Set Reminders"))
                             ],
                           ),
