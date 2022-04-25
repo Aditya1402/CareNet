@@ -1,9 +1,9 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:carenet/screens/homePage.dart';
 import 'package:carenet/screens/prom_disc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:after_layout/after_layout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Theming/customColors.dart';
 

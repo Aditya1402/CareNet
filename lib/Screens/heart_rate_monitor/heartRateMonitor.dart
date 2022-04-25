@@ -123,7 +123,7 @@ class _HeartRateMonState extends State<HeartRateMon> {
                           FutureBuilder(
                               future: Future.delayed(Duration(seconds: 5)),
                               builder: (c, s) =>
-                                  s.connectionState == ConnectionState.done
+                                  s.connectionState == ConnectionState.done && _toggled == true
                                       ? Text(
                                           "65 \nBPM",
                                           style: TextStyle(
