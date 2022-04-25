@@ -1,7 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:carenet/widgets/reminder/utilities.dart';
 
-Future<void> createWaterReminderNotification(
+Future<void> createPillReminderNotification(
     NotificationWeekAndTime notificationSchedule) async {
   await AwesomeNotifications().createNotification(
     content: NotificationContent(

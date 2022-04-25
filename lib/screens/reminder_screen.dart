@@ -3,7 +3,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:carenet/Theming/customColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-//import 'package:sprout/model_data/colors.dart';
+import 'package:flutter_svg/svg.dart';
 import '../widgets/reminder/notification_service.dart';
 import '../widgets/reminder/utilities.dart';
 
@@ -97,8 +97,12 @@ class _ReminderState extends State<Reminder> {
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              "assets/images/pills.png",
+              width: 35.w,
+            ),
             Text(
               'What time would you like to take your pills?',
               style: TextStyle(
@@ -109,38 +113,21 @@ class _ReminderState extends State<Reminder> {
             ),
 
             SizedBox(
-              height: 100.h,
+              height: 50.h,
             ),
 
             //////////////////////////////////////////////////////////////////////
 
-            Container(
-              height: 60,
-              width: 200,
-              child: TextButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-                  backgroundColor:
-                      MaterialStateProperty.all(CustomColors.bluebell),
-                  foregroundColor: MaterialStateProperty.all(Colors.white),
-                ),
+            ElevatedButton(
+                child: Text('Add a reminder'),
                 onPressed: () async {
                   NotificationWeekAndTime? pickedSchedule =
                       await pickSchedule(context);
 
                   if (pickedSchedule != null) {
-                    createWaterReminderNotification(pickedSchedule);
+                    createPillReminderNotification(pickedSchedule);
                   }
-                },
-                child: const Text(
-                  'Add a reminder',
-                  style: TextStyle(
-                    fontSize: 22,
-                  ),
-                ),
-              ),
-            ),
+                }),
           ],
         ),
       ),

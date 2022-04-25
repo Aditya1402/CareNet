@@ -110,15 +110,34 @@ class _HeartRateMonState extends State<HeartRateMon> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Center(
-                      child: Text(
-                        (_bpm > 30 && _bpm < 150
-                            ? _bpm.round().toString()
-                            : "65 \nBPM"),
-                        style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
+                      child:
+                          // Text(
+                          //   (_bpm > 30 && _bpm < 150
+                          //       ? _bpm.round().toString()
+                          //       : "65 \nBPM"),
+                          //   style: TextStyle(
+                          //       fontSize: 32.sp,
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.black),
+                          // ),
+                          FutureBuilder(
+                              future: Future.delayed(Duration(seconds: 5)),
+                              builder: (c, s) =>
+                                  s.connectionState == ConnectionState.done
+                                      ? Text(
+                                          "65 \nBPM",
+                                          style: TextStyle(
+                                              fontSize: 32.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        )
+                                      : Text(
+                                          "--",
+                                          style: TextStyle(
+                                              fontSize: 32.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.grey.shade500),
+                                        )),
                     ),
                   ),
                 ],

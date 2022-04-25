@@ -3,6 +3,7 @@ import 'package:carenet/storage/storageService.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CloudStoragePage extends StatefulWidget {
   const CloudStoragePage({Key? key}) : super(key: key);
@@ -30,6 +31,20 @@ class _CloudStoragePageState extends State<CloudStoragePage> {
         alignment: Alignment.center,
         child: Column(
           children: [
+            Image.asset(
+              "assets/images/folders.png",
+              width: 35.w,
+            ),
+            Text(
+              'Store your medical records in the cloud.',
+              style: TextStyle(
+                fontSize: 20.sp,
+              ),
+            ),
+            Text(
+              'You can now store your medical records such as doctor\'s prescriptions, Medical bills, etc. digitally. The next time you want to retrieve it, all you need is an internet connection.',
+              style: TextStyle(fontSize: 12.sp),
+            ),
             ElevatedButton(
                 onPressed: () async {
                   final results = await FilePicker.platform.pickFiles(
@@ -59,7 +74,7 @@ class _CloudStoragePageState extends State<CloudStoragePage> {
                         backgroundColor: Colors.green,
                         duration: Duration(seconds: 3),
                         content: Row(
-                          children: [
+                          children: const [
                             Icon(
                               Icons.done,
                               color: Colors.white,
@@ -119,7 +134,7 @@ class _CloudStoragePageState extends State<CloudStoragePage> {
               },
             ),
             FutureBuilder(
-              future: storage.downloadURL(img),
+              future: storage.downloadURL("medrec.png"),
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done &&
                     snapshot.hasData) {
@@ -134,7 +149,7 @@ class _CloudStoragePageState extends State<CloudStoragePage> {
                 }
                 if (snapshot.connectionState == ConnectionState.waiting ||
                     !snapshot.hasData) {
-                  return CircularProgressIndicator();
+                  return Container();
                 }
                 return Container();
               },

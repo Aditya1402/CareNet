@@ -28,26 +28,38 @@ class _MyAppState extends State<LocationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Live Location Tracking'),
+        title: const Text('Live Location'),
         elevation: 0,
       ),
       body: Column(
         children: [
-          TextButton(
+          Text(
+            'Stay in the know with the live location tracking.',
+            style: TextStyle(fontSize: 20.sp),
+          ),
+          Text(
+            'You can control your location settings here. Make sure you keep updating from time to time so that your loved ones know you\'re safe.',
+            style: TextStyle(fontSize: 12.sp),
+          ),
+          ElevatedButton(
               onPressed: () {
                 _getLocation();
               },
               child: Text('Add Location')),
-          TextButton(
+          ElevatedButton(
               onPressed: () {
                 _listenLocation();
               },
               child: Text('Enable Live Location')),
-          TextButton(
+          ElevatedButton(
               onPressed: () {
                 _stopListening();
               },
               child: Text('Stop Sharing Location')),
+          Text(
+            'Check the location of your loved ones to make sure they are safe.',
+            style: TextStyle(fontSize: 20.sp),
+          ),
           Expanded(
               child: StreamBuilder(
             stream:
